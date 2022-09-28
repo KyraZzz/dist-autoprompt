@@ -11,7 +11,7 @@ cat /dev/null > $logfile
 cat /dev/null > ${logfile}.log
 
 for path in $datadir/*; do
-    time CUDA_VISIBLE_DEVICES=4 python -m autoprompt.create_trigger \
+    time CUDA_VISIBLE_DEVICES=1 python -m autoprompt.create_trigger \
         --train $path/SST-2/train.tsv \
         --dev $path/SST-2/dev.tsv \
         --template '<s> {sentence} [T] [T] [T] [P] . </s>' \
