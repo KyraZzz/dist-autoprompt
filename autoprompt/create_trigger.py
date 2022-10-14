@@ -110,7 +110,7 @@ def load_pretrained(model_name):
     """
     config = AutoConfig.from_pretrained(model_name)
     model = AutoModelWithLMHead.from_pretrained(model_name)
-    model.eval()
+    model.eval() # why turn into evaluation mode
     tokenizer = AutoTokenizer.from_pretrained(model_name, add_prefix_space=True)
     utils.add_task_specific_tokens(tokenizer)
     return config, model, tokenizer
