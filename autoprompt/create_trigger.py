@@ -199,7 +199,7 @@ def run_model(args):
     logger.info('Loading model, tokenizer, etc.')
     config, model, tokenizer = load_pretrained(args.model_name)
     model.to(device)
-    embeddings = get_embeddings(model, config)
+    embeddings = get_embeddings(model, config) # equivalent to model.roberta.embeddings.word_embeddings
     embedding_gradient = GradientStorage(embeddings)
     predictor = PredictWrapper(model)
 
