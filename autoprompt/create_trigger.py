@@ -13,8 +13,8 @@ import transformers
 from transformers import AutoConfig, AutoModelWithLMHead, AutoTokenizer
 from tqdm import tqdm
 
-import autoprompt.utils as utils
-
+import utils
+import ipdb
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +49,7 @@ class PredictWrapper:
         trigger_mask = model_inputs.pop('trigger_mask')
         predict_mask = model_inputs.pop('predict_mask')
         model_inputs = replace_trigger_tokens(model_inputs, trigger_ids, trigger_mask)
-        logits, *_ = self._model(**model_inputs)
+        logits = self._model(**model_inputs)["logits"]
         predict_logits = logits.masked_select(predict_mask.unsqueeze(-1)).view(logits.size(0), -1)
         return predict_logits
 
