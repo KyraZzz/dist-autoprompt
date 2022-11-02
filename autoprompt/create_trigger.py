@@ -296,7 +296,7 @@ def run_model(args):
     # Measure elapsed time of trigger search
     start = time.time()
 
-    for i in range(args.iters):
+    for i in range(args.iters): # epoch
 
         logger.info(f'Iteration: {i}')
 
