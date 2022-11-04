@@ -188,6 +188,7 @@ class TriggerTemplatizer:
             label=label,
             tokenize=self._tokenize_labels
         )
+        print(f"label_id: {label_id}")
 
         return model_inputs, label_id
 

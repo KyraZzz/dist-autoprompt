@@ -65,3 +65,4 @@ target/
 .idea
 out/
 #data/
+**/*out
