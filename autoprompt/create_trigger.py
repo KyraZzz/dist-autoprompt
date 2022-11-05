@@ -166,13 +166,9 @@ def replace_trigger_tokens(model_inputs, trigger_ids, trigger_mask):
 
 def get_loss(predict_logits, label_ids):
     predict_logp = F.log_softmax(predict_logits, dim=-1)
-    print(f"predict_logp: {predict_logp}")
     target_logp = predict_logp.gather(-1, label_ids)
-    print(f"target_logp: {target_logp}")
     target_logp = target_logp - 1e32 * label_ids.eq(0)  # Apply mask
-    print(f"target_logp after: {target_logp}")
     target_logp = torch.logsumexp(target_logp, dim=-1)
-    print(f"loss: {-target_logp}")
     return -target_logp
 
 
@@ -389,6 +385,7 @@ def run_model(args):
                     eval_metric = evaluation_fn(predict_logits, labels)
 
                 candidate_scores[i] += eval_metric.sum()
+            print(f"candidate_scores: {candidate_scores}")    
 
         # TODO: Something cleaner. LAMA templates can't have mask tokens, so if
         # there are still mask tokens in the trigger then set the current score
