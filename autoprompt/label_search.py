@@ -16,8 +16,8 @@ from transformers import (
 )
 from tqdm import tqdm
 
-import autoprompt.utils as utils
-import autoprompt.create_trigger as ct
+import utils
+import create_trigger as ct
 
 
 logger = logging.getLogger(__name__)
